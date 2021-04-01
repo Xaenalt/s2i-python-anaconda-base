@@ -5,7 +5,7 @@ FROM registry.access.redhat.com/ubi8/s2i-base
 EXPOSE 8080
 
 # TODO(Spryor): ensure these are right, add Anaconda versions
-ENV PYTHON_VERSION=3.8 \
+ENV PYTHON_VERSION=3.6 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
@@ -34,9 +34,9 @@ ENV SUMMARY="" \
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
       io.k8s.description="$DESCRIPTION" \
-      io.k8s.display-name="Anaconda Python 3.8" \
+      io.k8s.display-name="Anaconda Python 3.6" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,python,python38,python-38,anaconda-python38" \
+      io.openshift.tags="builder,python,python36,python-36,anaconda-python36" \
       com.redhat.component="python-38-container" \
       name="ubi8/anaconda-38" \
       version="1" \
@@ -50,7 +50,7 @@ RUN INSTALL_PKGS="nss_wrapper \
     chmod +x Anaconda3-2020.11-Linux-x86_64.sh && \
     ./Anaconda3-2020.11-Linux-x86_64.sh -b -p /opt/anaconda3 && \
     rm ./Anaconda3-2020.11-Linux-x86_64.sh && \
-    yum -y module disable python38:3.8 && \
+    yum -y module disable python36:3.6 && \
     yum -y module enable httpd:2.4 && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
