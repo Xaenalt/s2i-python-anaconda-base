@@ -37,8 +37,8 @@ LABEL summary="$SUMMARY" \
       io.k8s.display-name="Anaconda Python 3.6" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,python,python36,python-36,anaconda-python36" \
-      com.redhat.component="python-38-container" \
-      name="ubi8/anaconda-38" \
+      com.redhat.component="python-36-container" \
+      name="ubi8/anaconda-36" \
       version="1" \
       usage="" \
       maintainer="Probably Anaconda"
@@ -50,6 +50,7 @@ RUN INSTALL_PKGS="nss_wrapper \
     chmod +x Anaconda3-2020.11-Linux-x86_64.sh && \
     ./Anaconda3-2020.11-Linux-x86_64.sh -b -p /opt/anaconda3 && \
     rm ./Anaconda3-2020.11-Linux-x86_64.sh && \
+    /opt/anaconda3/bin/conda update -n base -c defaults conda && \
     yum -y module disable python36:3.6 && \
     yum -y module enable httpd:2.4 && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
